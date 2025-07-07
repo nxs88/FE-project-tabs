@@ -9,7 +9,6 @@ function App() {
   const { data } = useFetch<Launch[]>(
     'https://api.spacexdata.com/v3/launches?launch_year=2020'
   );
-  console.log(data);
   return (
     <MantineProvider>
       <div className="container">
