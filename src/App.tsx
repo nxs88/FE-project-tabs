@@ -3,7 +3,7 @@ import '@mantine/core/styles.css';
 import './App.scss';
 import CardList from './components/CardList';
 import type { Launch } from './types/Launch';
-import { useFetch } from '@mantine/hooks';
+import { useFetch } from './hooks/useFetch';
 
 function App() {
   const { data } = useFetch<Launch[]>(
