@@ -12,7 +12,6 @@ function App() {
   return (
     <MantineProvider>
       <div className="container">
-        <h1>SpaceX Launches 2020</h1>
         <CardList data={data || []} />
       </div>
     </MantineProvider>

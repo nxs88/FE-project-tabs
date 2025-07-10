@@ -8,10 +8,13 @@ type CardListProps = {
 
 export default function CardList({ data }: CardListProps) {
   return (
-    <div className={styles.cardList}>
-      {data?.map((launch) => (
-        <Card key={launch.mission_name} launch={launch} />
-      ))}
-    </div>
+    <>
+      <h1>SpaceX Launches 2020</h1>
+      <div className={styles.cardList}>
+        {data?.map((launch) => (
+          <Card key={launch.mission_name} launch={launch} />
+        ))}
+      </div>
+    </>
   );
 }
