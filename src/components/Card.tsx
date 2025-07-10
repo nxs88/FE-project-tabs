@@ -1,14 +1,26 @@
 import { Card as MantineCard, Image, Button } from '@mantine/core';
 import styles from './Card.module.scss';
 import type { Launch } from '../types/Launch';
+import Modal from '../shared/Modal';
+import { useState } from 'react';
 
 type CardProps = {
   launch: Launch;
 };
 
 export default function Card({ launch }: CardProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const modalCloseHandler = () => {
+    setIsModalOpen(false);
+  };
+
+  const modalOpenHandler = () => {
+    setIsModalOpen(true);
+  };
+
   return (
-    <div>
+    <>
       <MantineCard
         className={styles.card}
         shadow="sm"
@@ -28,10 +40,28 @@ export default function Card({ launch }: CardProps) {
         />
         <p>{launch.mission_name}</p>
         <p>{launch.rocket.rocket_name}</p>
-        <Button radius="md" w="100%" mt="auto">
+        <Button radius="md" w="100%" mt="auto" onClick={modalOpenHandler}>
           See more
         </Button>
+        {isModalOpen && (
+          <Modal onClose={modalCloseHandler}>
+            <h3>{launch.mission_name}</h3>
+            <img
+              className={styles.modalImg}
+              width={200}
+              height={200}
+              src={launch.links.mission_patch_small}
+              alt="Mission Image"
+            />
+            <h3>Mission name:</h3>
+            <p>{launch.mission_name}</p>
+            <h3>Rocket name:</h3>
+            <p>{launch.rocket.rocket_name}</p>
+            <h3>Details:</h3>
+            <p>{launch.details}</p>
+          </Modal>
+        )}
       </MantineCard>
-    </div>
+    </>
   );
 }
