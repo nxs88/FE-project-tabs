@@ -7,8 +7,6 @@ type ModalProps = {
   onClose: () => void;
 };
 
-const modalElement = document.getElementById('modal');
-
 export default function Modal({ children, onClose }: ModalProps) {
   useEffect(() => {
     const onEsc = (e: KeyboardEvent) => {
@@ -19,19 +17,28 @@ export default function Modal({ children, onClose }: ModalProps) {
     document.addEventListener('keydown', onEsc);
     return () => document.removeEventListener('keydown', onEsc);
   }, [onClose]);
+  const modalElement = document.getElementById('modal');
 
   if (!modalElement) {
     return null;
   }
 
   return createPortal(
-    <>
-      <div className={styles.layout} onClick={onClose}></div>
+    <div data-testid="modal">
+      <div
+        data-testid="modal-overlay"
+        className={styles.overlay}
+        onClick={onClose}
+      ></div>
       <div className={styles.modal}>
-        <button className={styles.closeBtn} onClick={onClose}></button>
+        <button
+          data-testid="modal-close"
+          className={styles.closeBtn}
+          onClick={onClose}
+        ></button>
         {children}
       </div>
-    </>,
+    </div>,
     modalElement
   );
 }
