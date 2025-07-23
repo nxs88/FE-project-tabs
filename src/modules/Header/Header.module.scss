@@ -1,0 +1,33 @@
+.header {
+  width: 100%;
+  max-height: 60px;
+  display: flex;
+  padding: 15px 20px;
+  background-color: #fff;
+  .headerInfo {
+    display: flex;
+    align-items: center;
+    margin-right: 35%;
+
+    .headerLogo {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+  }
+  .headerPages {
+    display: flex;
+    align-items: center;
+    .vacanciesPage {
+      margin-right: 40px;
+      color: rgba(15, 15, 16, 0.5);
+    }
+    .aboutPage {
+      color: rgba(15, 15, 16, 0.5);
+    }
+    .aboutImg {
+      vertical-align: text-bottom;
+      margin-right: 10px;
+    }
+  }
+}
