@@ -1,0 +1,68 @@
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  width: 600px;
+  max-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  .cardName {
+    font-weight: 600;
+    font-size: 20px;
+    color: #364fc7;
+  }
+  .cardInfo {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .cardSalary {
+    font-weight: 400;
+    font-size: 16px;
+    color: #0f0f10;
+  }
+  .cardExp {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(15, 15, 16, 0.5);
+  }
+  .cardEmp {
+    color: rgba(15, 15, 16, 0.5);
+    margin-bottom: 15px;
+  }
+  .cardWf {
+    width: fit-content;
+    font-weight: 700;
+    font-size: 9px;
+    color: #fff;
+    background-color: #4263eb;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  .cardBtns {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  .detailsBtn {
+    width: fit-content;
+    background-color: #0f0f0f;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .feedbackBtn {
+    width: fit-content;
+    background-color: rgba(15, 15, 15, 0.1);
+    font-weight: 400px;
+    font-size: 14px;
+    color: #0f0f0f;
+  }
+}

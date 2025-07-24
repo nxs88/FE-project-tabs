@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
+import type { Vacancie } from '../../types/CardInfo';
 
-const initialState = {
+type VacanciesState = {
+  vacancies: Vacancie[];
+};
+
+const initialState: VacanciesState = {
   vacancies: [],
 };
 
