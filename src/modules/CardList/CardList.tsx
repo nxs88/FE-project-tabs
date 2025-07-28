@@ -1,16 +1,35 @@
-import { useSelector } from 'react-redux';
-import { selectVacancies } from '../../Redux/slices/vacanciesSlice';
 import styles from './CardList.module.scss';
 import VacancieCard from './VacancieCard';
+import type { Vacancie } from '../../types/CardInfo';
+import { Pagination } from '@mantine/core';
 
-export default function CardList() {
-  const vacancies = useSelector(selectVacancies);
+type CardListProps = {
+  vacancies: Vacancie[];
+  page: number;
+  totalPages: number;
+  pageChange: (page: number) => void;
+};
 
+export default function CardList({
+  vacancies,
+  page,
+  totalPages,
+  pageChange,
+}: CardListProps) {
   return (
     <main className={styles.main}>
       {vacancies.map((vacancie) => (
         <VacancieCard key={vacancie.id} vacancie={vacancie} />
       ))}
+      {totalPages > 1 && (
+        <Pagination
+          pb={25}
+          withEdges
+          total={totalPages}
+          value={page}
+          onChange={pageChange}
+        ></Pagination>
+      )}
     </main>
   );
 }

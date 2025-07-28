@@ -1,4 +1,5 @@
 import { createTheme } from '@mantine/core';
+import type { MantineTheme } from '@mantine/core';
 
 export const theme = createTheme({
   fontFamily: 'Open Sans , sans-serif',
@@ -17,5 +18,16 @@ export const theme = createTheme({
       '#3B5BDB',
       '#364FC7',
     ],
+  },
+  components: {
+    Button: {
+      styles: (theme: MantineTheme, context: { disabled: boolean }) => ({
+        root: {
+          ...(context.disabled && {
+            backgroundColor: theme.colors.indigo[2],
+          }),
+        },
+      }),
+    },
   },
 });

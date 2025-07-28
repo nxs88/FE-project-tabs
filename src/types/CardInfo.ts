@@ -16,4 +16,7 @@ export type Vacancie = {
   area: {
     name: string;
   };
+  snippet: {
+    requirement: string;
+  };
 };

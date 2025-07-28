@@ -1,3 +1,26 @@
 body {
   background-color: #f6f6f7;
 }
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 370px 1fr;
+  .info {
+    h2 {
+      font-weight: 700;
+      font-size: 26px;
+    }
+    p {
+      font-weight: 500;
+      font-size: 20px;
+      color: rgba(15, 15, 16, 0.5);
+    }
+  }
+}
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
