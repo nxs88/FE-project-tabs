@@ -9,7 +9,7 @@ export type Vacancie = {
   experience: {
     name: string;
   };
-  work_format: [{ id: string; name: string }];
+  work_format: { id: string; name: string }[];
   employer: {
     name: string;
   };
@@ -19,4 +19,5 @@ export type Vacancie = {
   snippet: {
     requirement: string;
   };
+  apply_alternate_url: string;
 };

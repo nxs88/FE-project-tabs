@@ -31,7 +31,9 @@ export default function VacancieCard({ vacancie }: CardProps) {
       )}
       <p className={styles.cardArea}>{vacancie.area.name}</p>
       <div className={styles.cardBtns}>
-        <Button className={styles.detailsBtn}>Смотреть вакансию</Button>
+        <Button className={styles.detailsBtn}>
+          <a href={vacancie.apply_alternate_url}>Смотреть вакансию</a>
+        </Button>
         <Button className={styles.feedbackBtn}>Откликнуться</Button>
       </div>
     </Card>
