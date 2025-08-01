@@ -8,6 +8,7 @@ import { theme } from '../../theme';
 import { matchMedia } from 'mock-match-media';
 import configureStore from 'redux-mock-store';
 import { fetchVacancies } from '../../Redux/slices/vacanciesSlice';
+import { MemoryRouter } from 'react-router-dom';
 
 vi.mock('../../Redux/slices/vacanciesSlice', async () => {
   const actual = await vi.importActual<
@@ -51,7 +52,9 @@ describe('VacancieFilter component', () => {
     render(
       <Provider store={store}>
         <MantineProvider theme={theme}>
-          <VacancieFilter />;
+          <MemoryRouter>
+            <VacancieFilter />;
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -62,7 +65,9 @@ describe('VacancieFilter component', () => {
     render(
       <Provider store={store}>
         <MantineProvider theme={theme}>
-          <VacancieFilter />;
+          <MemoryRouter>
+            <VacancieFilter />;
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -75,7 +80,9 @@ describe('VacancieFilter component', () => {
     render(
       <Provider store={store}>
         <MantineProvider theme={theme}>
-          <VacancieFilter />;
+          <MemoryRouter>
+            <VacancieFilter />;
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -86,7 +93,9 @@ describe('VacancieFilter component', () => {
     render(
       <Provider store={store}>
         <MantineProvider theme={theme}>
-          <VacancieFilter />
+          <MemoryRouter>
+            <VacancieFilter />;
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );

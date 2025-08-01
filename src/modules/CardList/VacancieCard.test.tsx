@@ -5,6 +5,7 @@ import VacancieCard from './VacancieCard';
 import { Provider } from 'react-redux';
 import store from '../../Redux/store';
 import { MantineProvider } from '@mantine/core';
+import { MemoryRouter } from 'react-router-dom';
 
 const mockVacancie = {
   id: 1,
@@ -48,7 +49,9 @@ describe('VacancieCard component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <VacancieCard vacancie={mockVacancie} />
+          <MemoryRouter>
+            <VacancieCard vacancie={mockVacancie} />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -60,7 +63,9 @@ describe('VacancieCard component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <VacancieCard vacancie={mockVacancie} />
+          <MemoryRouter>
+            <VacancieCard vacancie={mockVacancie} />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -70,7 +75,9 @@ describe('VacancieCard component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <VacancieCard vacancie={mockVacancieWithoutSalary} />
+          <MemoryRouter>
+            <VacancieCard vacancie={mockVacancieWithoutSalary} />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -80,7 +87,9 @@ describe('VacancieCard component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <VacancieCard vacancie={mockVacancie} />
+          <MemoryRouter>
+            <VacancieCard vacancie={mockVacancie} />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -90,7 +99,9 @@ describe('VacancieCard component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <VacancieCard vacancie={mockVacancie} />
+          <MemoryRouter>
+            <VacancieCard vacancie={mockVacancie} />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -100,7 +111,9 @@ describe('VacancieCard component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <VacancieCard vacancie={mockVacancieWithoutWorkFormat} />
+          <MemoryRouter>
+            <VacancieCard vacancie={mockVacancieWithoutWorkFormat} />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -110,7 +123,9 @@ describe('VacancieCard component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <VacancieCard vacancie={mockVacancie} />
+          <MemoryRouter>
+            <VacancieCard vacancie={mockVacancie} />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );

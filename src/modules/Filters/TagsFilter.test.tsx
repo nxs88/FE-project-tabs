@@ -6,6 +6,7 @@ import { setAddSkill, setRemoveSkill } from '../../Redux/slices/filtersSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import { MantineProvider } from '@mantine/core';
 import TagsFilter from './TagsFilter';
+import { MemoryRouter } from 'react-router-dom';
 
 const mockDispatch = vi.fn();
 const mockSelector = vi.fn();
@@ -36,7 +37,9 @@ describe('TagsFilter component', () => {
     render(
       <Provider store={mockStore}>
         <MantineProvider>
-          <TagsFilter />
+          <MemoryRouter>
+            <TagsFilter />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -47,7 +50,9 @@ describe('TagsFilter component', () => {
     render(
       <Provider store={mockStore}>
         <MantineProvider>
-          <TagsFilter />
+          <MemoryRouter>
+            <TagsFilter />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -58,7 +63,9 @@ describe('TagsFilter component', () => {
     render(
       <Provider store={mockStore}>
         <MantineProvider>
-          <TagsFilter />
+          <MemoryRouter>
+            <TagsFilter />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -70,7 +77,9 @@ describe('TagsFilter component', () => {
     render(
       <Provider store={mockStore}>
         <MantineProvider>
-          <TagsFilter />
+          <MemoryRouter>
+            <TagsFilter />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -85,7 +94,9 @@ describe('TagsFilter component', () => {
     render(
       <Provider store={mockStore}>
         <MantineProvider>
-          <TagsFilter />
+          <MemoryRouter>
+            <TagsFilter />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -100,7 +111,9 @@ describe('TagsFilter component', () => {
     render(
       <Provider store={mockStore}>
         <MantineProvider>
-          <TagsFilter />
+          <MemoryRouter>
+            <TagsFilter />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );

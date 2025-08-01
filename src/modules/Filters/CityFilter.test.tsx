@@ -5,6 +5,7 @@ import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { Provider } from 'react-redux';
 import store from '../../Redux/store';
 import { MantineProvider } from '@mantine/core';
+import { MemoryRouter } from 'react-router-dom';
 
 beforeAll(() => {
   vi.stubGlobal(
@@ -22,7 +23,9 @@ describe('CityFilter component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <CittyFilter />;
+          <MemoryRouter>
+            <CittyFilter />;
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -33,7 +36,9 @@ describe('CityFilter component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <CittyFilter />;
+          <MemoryRouter>
+            <CittyFilter />;
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -45,7 +50,9 @@ describe('CityFilter component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <CittyFilter />;
+          <MemoryRouter>
+            <CittyFilter />;
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );

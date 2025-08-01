@@ -6,6 +6,7 @@ import type { Vacancie } from '../../types/CardInfo';
 import { Provider } from 'react-redux';
 import store from '../../Redux/store';
 import { MantineProvider } from '@mantine/core';
+import { MemoryRouter } from 'react-router-dom';
 
 const mockVacancies: Vacancie[] = [
   {
@@ -46,12 +47,14 @@ describe('CardList component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <CardList
-            vacancies={mockVacancies}
-            page={1}
-            totalPages={1}
-            pageChange={mockPageChange}
-          />
+          <MemoryRouter>
+            <CardList
+              vacancies={mockVacancies}
+              page={1}
+              totalPages={1}
+              pageChange={mockPageChange}
+            />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -61,12 +64,14 @@ describe('CardList component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <CardList
-            vacancies={mockVacancies}
-            page={1}
-            totalPages={1}
-            pageChange={mockPageChange}
-          />
+          <MemoryRouter>
+            <CardList
+              vacancies={mockVacancies}
+              page={1}
+              totalPages={1}
+              pageChange={mockPageChange}
+            />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -77,12 +82,14 @@ describe('CardList component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <CardList
-            vacancies={mockVacancies}
-            page={1}
-            totalPages={3}
-            pageChange={mockPageChange}
-          />
+          <MemoryRouter>
+            <CardList
+              vacancies={mockVacancies}
+              page={1}
+              totalPages={3}
+              pageChange={mockPageChange}
+            />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
@@ -95,12 +102,14 @@ describe('CardList component', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
-          <CardList
-            vacancies={mockVacancies}
-            page={1}
-            totalPages={3}
-            pageChange={mockPageChange}
-          />
+          <MemoryRouter>
+            <CardList
+              vacancies={mockVacancies}
+              page={1}
+              totalPages={2}
+              pageChange={mockPageChange}
+            />
+          </MemoryRouter>
         </MantineProvider>
       </Provider>
     );
