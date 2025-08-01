@@ -28,16 +28,21 @@ export default function TagsFilter() {
   };
 
   const addSkillHandler = (text: string) => {
+    if (!text) return;
     dispatch(setAddSkill(text));
     setTagText('');
-    searchParams.set('skills', [...skills, tagText].join(','));
+    searchParams.set('skills', [...skills, text].join(','));
     setSearchParams(searchParams);
   };
 
   const removeSkillHandler = (item: string) => {
     dispatch(setRemoveSkill(item));
     const updateSkills = skills.filter((skill) => skill !== item);
-    searchParams.set('skills', updateSkills.join(','));
+    if (updateSkills.length > 0) {
+      searchParams.set('skills', updateSkills.join(','));
+    } else {
+      searchParams.delete('skills');
+    }
     setSearchParams(searchParams);
   };
 

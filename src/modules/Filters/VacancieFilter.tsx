@@ -22,7 +22,6 @@ export default function VacancieFilter() {
     dispatch(fetchVacancies({ search, city, skills, page: 1 }));
     searchParams.set('search', search);
     searchParams.set('city', city);
-    searchParams.set('skills', skills.join(','));
     setSearchParams(searchParams);
   };
 

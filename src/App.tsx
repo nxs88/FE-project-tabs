@@ -57,7 +57,7 @@ function App() {
   return (
     <MantineProvider theme={theme}>
       <Routes>
-        <Route path="/FE-project/" element={<MainLayout />}>
+        <Route path="/FE-project-routing/" element={<MainLayout />}>
           <Route index element={<Navigate to="vacancies" replace />} />
           <Route
             path="vacancies"
