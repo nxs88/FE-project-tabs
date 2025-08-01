@@ -1,18 +1,23 @@
+import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import './App.scss';
 import './reset.scss';
-import Header from './modules/Header/Header';
-import CardList from './modules/CardList/CardList';
 import { theme } from './theme';
-import VacancieFilter from './modules/Filters/VacancieFilter';
-import CittyFilter from './modules/Filters/CittyFilter';
-import TagsFilter from './modules/Filters/TagsFilter';
 import { useEffect, useState } from 'react';
 import { fetchVacancies, selectVacancies } from './Redux/slices/vacanciesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch } from './Redux/store';
-import { selectCity, selectSkills } from './Redux/slices/filtersSlice';
+import {
+  selectCity,
+  selectSkills,
+  setAddSkill,
+  setCity,
+  setSearch,
+} from './Redux/slices/filtersSlice';
+import MainLayout from './layouts/MainLayout';
+import SearchVacanciePage from './pages/SearchVacanciePage';
+import SingleVacanciePage from './pages/SingleVacanciePage';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,6 +27,20 @@ function App() {
 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const search = searchParams.get('search') || '';
+    const cityUrl = searchParams.get('city') || 'Все города';
+    const skillsUrl = searchParams.get('skills')?.split(',') || [];
+    dispatch(setSearch(search));
+    dispatch(setCity(cityUrl));
+    skillsUrl.forEach((skill) => dispatch(setAddSkill(skill)));
+    dispatch(
+      fetchVacancies({ search, city: cityUrl, skills: skillsUrl, page: 1 })
+    );
+  }, [dispatch, searchParams]);
 
   useEffect(() => {
     const load = async () => {
@@ -37,24 +56,26 @@ function App() {
 
   return (
     <MantineProvider theme={theme}>
-      <Header />
-      <div className="container">
-        <div className="info">
-          <h2>Список вакансий </h2>
-          <p>по профессии Frontend-разработчик</p>
-        </div>
-        <VacancieFilter />
-        <div className="filters">
-          <TagsFilter />
-          <CittyFilter />
-        </div>
-        <CardList
-          vacancies={vacancies}
-          page={page}
-          totalPages={totalPages}
-          pageChange={setPage}
-        />
-      </div>
+      <Routes>
+        <Route path="/FE-project/" element={<MainLayout />}>
+          <Route index element={<Navigate to="vacancies" replace />} />
+          <Route
+            path="vacancies"
+            element={
+              <SearchVacanciePage
+                vacancies={vacancies}
+                page={page}
+                totalPages={totalPages}
+                pageChange={setPage}
+              />
+            }
+          />
+          <Route
+            path="vacancies/:id"
+            element={<SingleVacanciePage vacancies={vacancies} />}
+          />
+        </Route>
+      </Routes>
     </MantineProvider>
   );
 }

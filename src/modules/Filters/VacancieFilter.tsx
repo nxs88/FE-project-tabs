@@ -9,15 +9,25 @@ import {
   selectSkills,
   setSearch,
 } from '../../Redux/slices/filtersSlice';
+import { useSearchParams } from 'react-router-dom';
 
 export default function VacancieFilter() {
   const dispatch = useDispatch<AppDispatch>();
   const search = useSelector(selectSearch);
   const city = useSelector(selectCity);
   const skills = useSelector(selectSkills);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const searchHandler = () => {
     dispatch(fetchVacancies({ search, city, skills, page: 1 }));
+    searchParams.set('search', search);
+    searchParams.set('city', city);
+    searchParams.set('skills', skills.join(','));
+    setSearchParams(searchParams);
+  };
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearch(e.target.value));
   };
 
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -35,7 +45,7 @@ export default function VacancieFilter() {
       />
       <input
         value={search}
-        onChange={(e) => dispatch(setSearch(e.target.value))}
+        onChange={onChangeHandler}
         onKeyDown={onKeyDownHandler}
         className={styles.filterInput}
         type="text"

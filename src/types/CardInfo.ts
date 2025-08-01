@@ -7,7 +7,7 @@ export type Vacancie = {
     currency: string;
   } | null;
   experience: {
-    name: string;
+    name: string | null;
   };
   work_format: { id: string; name: string }[];
   employer: {
@@ -17,7 +17,8 @@ export type Vacancie = {
     name: string;
   };
   snippet: {
-    requirement: string;
+    requirement: string | null;
+    responsibility: string | null;
   };
   apply_alternate_url: string;
 };

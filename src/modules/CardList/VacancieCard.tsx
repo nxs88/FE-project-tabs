@@ -1,11 +1,16 @@
 import { Card, Button } from '@mantine/core';
 import styles from './VacancieCard.module.scss';
 import type { Vacancie } from '../../types/CardInfo';
+import { Link } from 'react-router-dom';
 
 type CardProps = {
   vacancie: Vacancie;
+  isSinglePage?: boolean;
 };
-export default function VacancieCard({ vacancie }: CardProps) {
+export default function VacancieCard({
+  vacancie,
+  isSinglePage = false,
+}: CardProps) {
   return (
     <Card className={styles.card}>
       <h2 className={styles.cardName}>{vacancie.name}</h2>
@@ -31,9 +36,19 @@ export default function VacancieCard({ vacancie }: CardProps) {
       )}
       <p className={styles.cardArea}>{vacancie.area.name}</p>
       <div className={styles.cardBtns}>
-        <Button className={styles.detailsBtn}>Смотреть вакансию</Button>
-        <Button className={styles.feedbackBtn}>
-          <a href={vacancie.apply_alternate_url}>Откликнуться</a>
+        {!isSinglePage && (
+          <Button className={styles.detailsBtn}>
+            <Link to={vacancie.id.toString()}>Смотреть вакансию</Link>
+          </Button>
+        )}
+        <Button
+          className={`${styles.feedbackBtn} ${
+            isSinglePage ? styles.btnSinglePage : ''
+          }`}
+        >
+          <a href={vacancie.apply_alternate_url}>
+            {isSinglePage ? 'Откликнуться на hh.ru' : 'Откликнуться'}
+          </a>
         </Button>
       </div>
     </Card>

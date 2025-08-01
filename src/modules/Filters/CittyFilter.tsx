@@ -9,10 +9,20 @@ import {
 import styles from './CityFilter.module.scss';
 import { useEffect } from 'react';
 import { fetchVacancies } from '../../Redux/slices/vacanciesSlice';
+import { useSearchParams } from 'react-router-dom';
+
 export default function CittyFilter() {
   const dispatch = useDispatch<AppDispatch>();
   const city = useSelector(selectCity);
   const skills = useSelector(selectSkills);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const changeHandler = (value: string) => {
+    dispatch(setCity(value));
+    searchParams.set('city', value);
+    setSearchParams(searchParams);
+    dispatch(fetchVacancies({ search: '', city: value, skills, page: 1 }));
+  };
 
   useEffect(() => {
     dispatch(fetchVacancies({ search: '', city, skills, page: 1 }));
@@ -24,7 +34,7 @@ export default function CittyFilter() {
         <Select
           value={city}
           onChange={(value) => {
-            if (value) dispatch(setCity(value));
+            if (value) changeHandler(value);
           }}
           leftSection={
             <img

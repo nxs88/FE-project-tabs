@@ -66,9 +66,15 @@ p {
     font-weight: 400px;
     font-size: 14px;
     color: #0f0f0f;
+
     a {
       color: #fff;
       text-decoration: none;
     }
+  }
+  .btnSinglePage {
+    width: fit-content;
+    background-color: #0f0f0f;
+    color: #fff;
   }
 }

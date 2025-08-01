@@ -8,11 +8,13 @@ import {
 } from '../../Redux/slices/filtersSlice';
 import type { AppDispatch } from '../../Redux/store';
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 export default function TagsFilter() {
   const [tagText, setTagText] = useState('');
   const skills = useSelector(selectSkills);
   const dispatch = useDispatch<AppDispatch>();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!tagText) return;
@@ -20,7 +22,23 @@ export default function TagsFilter() {
       e.preventDefault();
       dispatch(setAddSkill(tagText));
       setTagText('');
+      searchParams.set('skills', [...skills, tagText].join(','));
+      setSearchParams(searchParams);
     }
+  };
+
+  const addSkillHandler = (text: string) => {
+    dispatch(setAddSkill(text));
+    setTagText('');
+    searchParams.set('skills', [...skills, tagText].join(','));
+    setSearchParams(searchParams);
+  };
+
+  const removeSkillHandler = (item: string) => {
+    dispatch(setRemoveSkill(item));
+    const updateSkills = skills.filter((skill) => skill !== item);
+    searchParams.set('skills', updateSkills.join(','));
+    setSearchParams(searchParams);
   };
 
   return (
@@ -42,8 +60,7 @@ export default function TagsFilter() {
           color="#228BE6"
           className={styles.filterBtn}
           onClick={() => {
-            dispatch(setAddSkill(tagText));
-            setTagText('');
+            addSkillHandler(tagText);
           }}
         >
           <img
@@ -58,7 +75,7 @@ export default function TagsFilter() {
           <Pill
             key={item}
             withRemoveButton
-            onRemove={() => dispatch(setRemoveSkill(item))}
+            onRemove={() => removeSkillHandler(item)}
           >
             {item}
           </Pill>
