@@ -29,6 +29,7 @@ const mockVacancie = {
   },
   snippet: {
     requirement: 'React',
+    responsibility: 'test',
   },
   apply_alternate_url: 'url',
 };

@@ -31,6 +31,7 @@ const mockVacancies: Vacancie[] = [
     },
     snippet: {
       requirement: 'React',
+      responsibility: 'test',
     },
     apply_alternate_url: 'url',
   },
