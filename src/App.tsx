@@ -14,13 +14,7 @@ import { useEffect, useState } from 'react';
 import { fetchVacancies, selectVacancies } from './Redux/slices/vacanciesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch } from './Redux/store';
-import {
-  selectCity,
-  selectSkills,
-  // setAddSkill,
-  // setCity,
-  // setSearch,
-} from './Redux/slices/filtersSlice';
+import { selectCity, selectSkills } from './Redux/slices/filtersSlice';
 import MainLayout from './layouts/MainLayout';
 import SearchVacanciePage from './pages/SearchVacanciePage';
 import SingleVacanciePage from './pages/SingleVacanciePage';
