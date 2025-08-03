@@ -19,7 +19,7 @@ beforeAll(() => {
 });
 
 describe('CityFilter component', () => {
-  it('Отображает иконку внутри инпута', () => {
+  it('Отображает табы с текстом "Москва" и "Санкт-Петербург"', () => {
     render(
       <Provider store={store}>
         <MantineProvider>
@@ -29,22 +29,12 @@ describe('CityFilter component', () => {
         </MantineProvider>
       </Provider>
     );
-    const icon = screen.getByAltText('Mark');
-    expect(icon).toBeInTheDocument();
+    const Moscow = screen.getByText('Москва');
+    const StPetersburg = screen.getByText('Санкт-Петербург');
+    expect(Moscow).toBeInTheDocument();
+    expect(StPetersburg).toBeInTheDocument();
   });
-  it('Отображает плейсхолдер', () => {
-    render(
-      <Provider store={store}>
-        <MantineProvider>
-          <MemoryRouter>
-            <CittyFilter />;
-          </MemoryRouter>
-        </MantineProvider>
-      </Provider>
-    );
-    const placeholder = screen.getByPlaceholderText('Все города');
-    expect(placeholder).toBeInTheDocument();
-  });
+
   it('При выборе города вызывает setCity', () => {
     const dispatchSpy = vi.spyOn(store, 'dispatch');
     render(
@@ -56,8 +46,7 @@ describe('CityFilter component', () => {
         </MantineProvider>
       </Provider>
     );
-    const select = screen.getByRole('textbox');
-    fireEvent.click(select);
+
     fireEvent.click(screen.getByText('Москва'));
     expect(dispatchSpy).toHaveBeenCalledWith({
       type: 'filters/setCity',
