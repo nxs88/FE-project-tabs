@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "deploy": "vite build && vite-plugin-gh-pages --branch gh-pages"
+    "postbuild": "cp dist/index.html dist/404.html",
+    "deploy": "vite build && cp dist/index.html dist/404.html && vite-gh-pages"
   },
   "dependencies": {
     "@mantine/core": "^8.1.2",

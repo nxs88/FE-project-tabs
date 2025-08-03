@@ -33,7 +33,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route
-        path="/FE-project-tabs/"
+        path="/"
         element={<MainLayout />}
         errorElement={<Navigate to="FE-project-tabs/not-found" replace />}
       >
@@ -62,7 +62,10 @@ function App() {
           element={<Navigate to="/FE-project-tabs/not-found" replace />}
         />
       </Route>
-    )
+    ),
+    {
+      basename: '/FE-project-tabs',
+    }
   );
 
   useEffect(() => {
