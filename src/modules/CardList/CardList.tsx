@@ -1,5 +1,6 @@
 import styles from './CardList.module.scss';
 import VacancieCard from './VacancieCard';
+import CittyFilter from '../Filters/CittyFilter';
 import type { Vacancie } from '../../types/CardInfo';
 import { Pagination } from '@mantine/core';
 
@@ -18,6 +19,7 @@ export default function CardList({
 }: CardListProps) {
   return (
     <main className={styles.main}>
+      <CittyFilter />
       {vacancies.map((vacancie) => (
         <VacancieCard key={vacancie.id} vacancie={vacancie} />
       ))}

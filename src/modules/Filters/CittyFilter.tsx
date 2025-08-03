@@ -1,4 +1,4 @@
-import { Select } from '@mantine/core';
+import { Tabs } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch } from '../../Redux/store';
 import {
@@ -9,18 +9,29 @@ import {
 import styles from './CityFilter.module.scss';
 import { useEffect } from 'react';
 import { fetchVacancies } from '../../Redux/slices/vacanciesSlice';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function CittyFilter() {
   const dispatch = useDispatch<AppDispatch>();
   const city = useSelector(selectCity);
   const skills = useSelector(selectSkills);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const changeHandler = (value: string) => {
+    if (!value) return;
     dispatch(setCity(value));
-    searchParams.set('city', value);
-    setSearchParams(searchParams);
+
+    const cityPath =
+      value === 'Москва'
+        ? 'moscow'
+        : value === 'Санкт-Петербург'
+        ? 'petersburg'
+        : '';
+
+    if (cityPath) {
+      navigate(`${cityPath}`);
+    }
+
     dispatch(fetchVacancies({ search: '', city: value, skills, page: 1 }));
   };
 
@@ -30,23 +41,12 @@ export default function CittyFilter() {
 
   return (
     <div className={styles.cityFilter}>
-      <div className={styles.citySelector}>
-        <Select
-          value={city}
-          onChange={(value) => {
-            if (value) changeHandler(value);
-          }}
-          leftSection={
-            <img
-              className={styles.cityFilterMark}
-              src={`${import.meta.env.BASE_URL}assets/images/Mark.png`}
-              alt="Mark"
-            />
-          }
-          placeholder="Все города"
-          data={['Все города', 'Москва', 'Санкт-Петербург']}
-        />
-      </div>
+      <Tabs value={city} onChange={(value) => changeHandler(value || '')}>
+        <Tabs.List className={styles.tabsList}>
+          <Tabs.Tab value="Москва">Москва</Tabs.Tab>
+          <Tabs.Tab value="Санкт-Петербург">Санкт-Петербург</Tabs.Tab>
+        </Tabs.List>
+      </Tabs>
     </div>
   );
 }

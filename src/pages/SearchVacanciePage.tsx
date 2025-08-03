@@ -1,6 +1,5 @@
 import VacancieFilter from '../modules/Filters/VacancieFilter';
 import TagsFilter from '../modules/Filters/TagsFilter';
-import CittyFilter from '../modules/Filters/CittyFilter';
 import CardList from '../modules/CardList/CardList';
 import type { Vacancie } from '../types/CardInfo';
 
@@ -27,7 +26,6 @@ export default function SearchVacanciePage({
         <VacancieFilter />
         <div className="filters">
           <TagsFilter />
-          <CittyFilter />
         </div>
         <CardList
           vacancies={vacancies}

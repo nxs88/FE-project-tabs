@@ -1,4 +1,10 @@
-import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Navigate,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import './App.scss';
@@ -11,13 +17,15 @@ import type { AppDispatch } from './Redux/store';
 import {
   selectCity,
   selectSkills,
-  setAddSkill,
-  setCity,
-  setSearch,
+  // setAddSkill,
+  // setCity,
+  // setSearch,
 } from './Redux/slices/filtersSlice';
 import MainLayout from './layouts/MainLayout';
 import SearchVacanciePage from './pages/SearchVacanciePage';
 import SingleVacanciePage from './pages/SingleVacanciePage';
+import CittyFilter from './modules/Filters/CittyFilter';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -28,19 +36,40 @@ function App() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const [searchParams] = useSearchParams();
-
-  useEffect(() => {
-    const search = searchParams.get('search') || '';
-    const cityUrl = searchParams.get('city') || 'Все города';
-    const skillsUrl = searchParams.get('skills')?.split(',') || [];
-    dispatch(setSearch(search));
-    dispatch(setCity(cityUrl));
-    skillsUrl.forEach((skill) => dispatch(setAddSkill(skill)));
-    dispatch(
-      fetchVacancies({ search, city: cityUrl, skills: skillsUrl, page: 1 })
-    );
-  }, [dispatch, searchParams]);
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route
+        path="/FE-project-tabs/"
+        element={<MainLayout />}
+        errorElement={<Navigate to="FE-project-tabs/not-found" replace />}
+      >
+        <Route index element={<Navigate to="vacancies" replace />} />
+        <Route
+          path="vacancies"
+          element={
+            <SearchVacanciePage
+              vacancies={vacancies}
+              page={page}
+              totalPages={totalPages}
+              pageChange={setPage}
+            />
+          }
+        >
+          <Route path="moscow" element={<CittyFilter />} />
+          <Route path="petersburg" element={<CittyFilter />} />
+        </Route>
+        <Route
+          path="vacancies/:id"
+          element={<SingleVacanciePage vacancies={vacancies} />}
+        />
+        <Route path="not-found" element={<NotFoundPage />} />
+        <Route
+          path="*"
+          element={<Navigate to="/FE-project-tabs/not-found" replace />}
+        />
+      </Route>
+    )
+  );
 
   useEffect(() => {
     const load = async () => {
@@ -56,26 +85,7 @@ function App() {
 
   return (
     <MantineProvider theme={theme}>
-      <Routes>
-        <Route path="/FE-project-routing/" element={<MainLayout />}>
-          <Route index element={<Navigate to="vacancies" replace />} />
-          <Route
-            path="vacancies"
-            element={
-              <SearchVacanciePage
-                vacancies={vacancies}
-                page={page}
-                totalPages={totalPages}
-                pageChange={setPage}
-              />
-            }
-          />
-          <Route
-            path="vacancies/:id"
-            element={<SingleVacanciePage vacancies={vacancies} />}
-          />
-        </Route>
-      </Routes>
+      <RouterProvider router={router} />
     </MantineProvider>
   );
 }

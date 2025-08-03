@@ -1,3 +1,6 @@
 .main {
-  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-self: flex-end;
 }

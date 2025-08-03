@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import type { Vacancie } from '../types/CardInfo';
 import VacancieCard from '../modules/CardList/VacancieCard';
 import styles from './SingleVacanciePage.module.scss';
@@ -14,6 +14,9 @@ export default function SingleVacanciePage({
   const vacancie = vacancies.find(
     (vacancie) => vacancie.id.toString() === params.id
   ) as Vacancie;
+  if (!vacancie) {
+    return <Navigate to="/FE-project-tabs/not-found" replace />;
+  }
 
   return (
     <div className={styles.container}>

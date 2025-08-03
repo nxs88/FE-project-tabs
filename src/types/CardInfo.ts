@@ -1,17 +1,17 @@
 export type Vacancie = {
   id: number;
-  name: string;
+  name: string | null;
   salary_range: {
-    from: number;
-    to: number;
-    currency: string;
+    from: number | null;
+    to: number | null;
+    currency: string | null;
   } | null;
   experience: {
     name: string | null;
   };
   work_format: { id: string; name: string }[];
   employer: {
-    name: string;
+    name: string | null;
   };
   area: {
     name: string;
