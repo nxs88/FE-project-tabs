@@ -35,7 +35,7 @@ function App() {
       <Route
         path="/"
         element={<MainLayout />}
-        errorElement={<Navigate to="FE-project-tabs/not-found" replace />}
+        errorElement={<Navigate to="not-found" replace />}
       >
         <Route index element={<Navigate to="vacancies" replace />} />
         <Route
@@ -57,10 +57,7 @@ function App() {
           element={<SingleVacanciePage vacancies={vacancies} />}
         />
         <Route path="not-found" element={<NotFoundPage />} />
-        <Route
-          path="*"
-          element={<Navigate to="/FE-project-tabs/not-found" replace />}
-        />
+        <Route path="*" element={<Navigate to="not-found" replace />} />
       </Route>
     ),
     {
