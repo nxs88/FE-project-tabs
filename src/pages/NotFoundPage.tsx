@@ -11,7 +11,7 @@ export default function NotFoundPage() {
             <h1>Упс! Такой страницы не существует</h1>
             <p>Давайте перейдём к началу.</p>
           </div>
-          <Link className={styles.linkBtn} to="/FE-project-tabs/">
+          <Link className={styles.linkBtn} to="/">
             <Button>На главную</Button>
           </Link>
         </div>
