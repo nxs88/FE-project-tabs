@@ -11,7 +11,10 @@ import {
 } from '../../Redux/slices/filtersSlice';
 import { useSearchParams } from 'react-router-dom';
 
-export default function VacancieFilter() {
+type Props = {
+  resetPage: () => void;
+};
+export default function VacancieFilter({ resetPage }: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const search = useSelector(selectSearch);
   const city = useSelector(selectCity);
@@ -23,6 +26,7 @@ export default function VacancieFilter() {
     searchParams.set('search', search);
     searchParams.set('city', city);
     setSearchParams(searchParams);
+    resetPage();
   };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -23,7 +23,7 @@ export default function SearchVacanciePage({
           <h2>Список вакансий </h2>
           <p>по профессии Frontend-разработчик</p>
         </div>
-        <VacancieFilter />
+        <VacancieFilter resetPage={() => pageChange(1)} />
         <div className="filters">
           <TagsFilter />
         </div>

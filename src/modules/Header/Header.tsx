@@ -1,16 +1,17 @@
+import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.headerInfo}>
-        <a href="">
+        <Link to="/">
           <img
             className={styles.headerLogo}
             src={`${import.meta.env.BASE_URL}assets/images/logo.svg`}
             alt="Logo"
           />
-        </a>
+        </Link>
         <p>.FrontEnd</p>
       </div>
 
